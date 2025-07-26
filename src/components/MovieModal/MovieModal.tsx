@@ -1,6 +1,6 @@
-import { createPortal } from "react-dom";
-import React, { useEffect } from "react";
 import css from "./MovieModal.module.css";
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 import type { Movie } from "../../types/movie";
 
 const IMAGE_BASE_URL_ORIGINAL = "https://image.tmdb.org/t/p/original";
@@ -28,7 +28,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
     };
   }, [onClose]);
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const onBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
     }
@@ -39,7 +39,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
       className={css.backdrop}
       role="dialog"
       aria-modal="true"
-      onClick={handleBackdropClick}
+      onClick={onBackdropClick}
     >
       <div className={css.modal}>
         <button

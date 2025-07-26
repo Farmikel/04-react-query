@@ -1,14 +1,14 @@
+import css from "./App.module.css";
+import Loader from "../Loader/Loader";
+import ReactPaginate from "react-paginate";
+import SearchBar from "../SearchBar/SearchBar";
+import MovieGrid from "../MovieGrid/MovieGrid";
+import MovieModal from "../MovieModal/MovieModal";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Toaster, toast } from "react-hot-toast";
 import { keepPreviousData } from "@tanstack/react-query";
-import ReactPaginate from "react-paginate";
-import css from "./App.module.css";
-import SearchBar from "../SearchBar/SearchBar";
-import MovieGrid from "../MovieGrid/MovieGrid";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import MovieModal from "../MovieModal/MovieModal";
 import type { Movie } from "../../types/movie";
 import {
   fetchMovies,
@@ -54,11 +54,11 @@ export default function App() {
     }
   };
 
-  const handleMovieSelect = (movie: Movie) => {
+  const movieSelect = (movie: Movie) => {
     setSelectedMovie(movie);
   };
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     setSelectedMovie(null);
   };
 
@@ -82,10 +82,10 @@ export default function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {isSuccess && data && data.results.length > 0 && (
-        <MovieGrid movies={data.results} onSelect={handleMovieSelect} />
+        <MovieGrid movies={data.results} onSelect={movieSelect} />
       )}
       {selectedMovie && (
-        <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
+        <MovieModal movie={selectedMovie} onClose={closeModal} />
       )}
     </div>
   );
